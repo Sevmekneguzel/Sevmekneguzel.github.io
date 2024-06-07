@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Barcode Reader</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .button {
+      background-color: #4CAF50;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+  <h1>Barcode Reader</h1>
+  <button class="button" onclick="openBarcodeReader()">Open Barcode Reader</button>
+  <button class="button" onclick="showShoppingCart()">Sepete Ekle</button>
+
+  <div id="barcode-reader-output"></div>
+  <div id="shopping-cart-output"></div>
+
+  <script>
+    function openBarcodeReader() {
+      // Replace this with your actual barcode reader code
+      var barcode = "123"; // hardcoded barcode value for demonstration purposes
+      var apiUrl = "https://api.example.com/product/price"; // example API URL
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", apiUrl + "?barcode=" + barcode, true);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var price = xhr.responseText;
+          document.getElementById("barcode-reader-output").innerHTML = "Ürün fiyatı: " + price;
+          // Add product to shopping cart
+          var product = { barcode: barcode, price: price };
+          shoppingCart.push(product);
+        } else {
+          document.getElementById("barcode-reader-output").innerHTML = "Error: " + xhr.statusText;
+        }
+      };
+      xhr.send();
+    }
+
+    function showShoppingCart() {
+      var cartContent = "";
+      var totalPrice = 0;
+      for (var i = 0; i < shoppingCart.length; i++) {
+        var product = shoppingCart[i];
+        cartContent += "Barkod: " + product.barcode + ", Fiyat: " + product.price + "<br>";
+        totalPrice += parseFloat(product.price);
+      }
+      cartContent += "Toplam Fiyat: " + totalPrice;
+      document.getElementById("shopping-cart-output").innerHTML = "Sepetiniz:<br>" + cartContent;
+    }
+
+    var shoppingCart = [];
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+  <title>Barcode Reader</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .button {
+      background-color: #4CAF50;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+  <h1>Barcode Reader</h1>
+  <button class="button" onclick="openBarcodeReader()">Open Barcode Reader</button>
+  <button class="button" onclick="showShoppingCart()">Sepete Ekle</button>
+
+  <div id="barcode-reader-output"></div>
+  <div id="shopping-cart-output"></div>
+
+  <script>
+    function openBarcodeReader() {
+      // Replace this with your actual barcode reader code
+      var barcode = "123"; // hardcoded barcode value for demonstration purposes
+      var apiUrl = "https://api.example.com/product/price"; // example API URL
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", apiUrl + "?barcode=" + barcode, true);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var price = xhr.responseText;
+          document.getElementById("barcode-reader-output").innerHTML = "Ürün fiyatı: " + price;
+          // Add product to shopping cart
+          var product = { barcode: barcode, price: price };
+          shoppingCart.push(product);
+        } else {
+          document.getElementById("barcode-reader-output").innerHTML = "Error: " + xhr.statusText;
+        }
+      };
+      xhr.send();
+    }
+
+    function showShoppingCart() {
+      var cartContent = "";
+      var totalPrice = 0;
+      for (var i = 0; i < shoppingCart.length; i++) {
+        var product = shoppingCart[i];
+        cartContent += "Barkod: " + product.barcode + ", Fiyat: " + product.price + "<br>";
+        totalPrice += parseFloat(product.price);
+      }
+      cartContent += "Toplam Fiyat: " + totalPrice;
+      document.getElementById("shopping-cart-output").innerHTML = "Sepetiniz:<br>" + cartContent;
+    }
+
+    var shoppingCart = [];
+  </script>
+</body>
+</html>
